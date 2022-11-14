@@ -26,7 +26,30 @@ const getBalance = asyncHandler(async (req,res) => {
         balance:user.balance
     });
 })
+const transferBalance = asyncHandler(async (req,res) => {
+    const {from,to,amount} = req.body;
+    const fromUser = await User.findById(from);
+    const toUser = await User.findById(to);
+    if(!fromUser || !toUser){
+        res.status(404).json({
+            message:'User not found'
+        });
+    }
+    if(fromUser.balance < amount){
+        res.status(400).json({
+            message:'Insufficient balance'
+        });
+    }
+    fromUser.balance -= amount;
+    toUser.balance += amount;
+    await fromUser.save();
+    await toUser.save();
+    res.json({
+        message:'Balance transferred successfully'
+    });
+})
 module.exports={
     postUser,
-    getBalance
+    getBalance,
+    transferBalance
 }

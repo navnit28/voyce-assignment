@@ -9,6 +9,26 @@ const UserController = require('@controller/client/user');
  *       type: object
  *       required:
  *       properties:
+ *     Transfer:
+ *       type: object
+ *       required:
+ *         - to
+ *         - from
+ *         - amount
+ *       properties:
+ *         to:
+ *           type: string
+ *           description: The id of the user to transfer to
+ *         from:
+ *           type: string
+ *           description: The id of the user to transfer from
+ *         amount:
+ *           type: Number
+ *           description: The amount to transfer
+ *       example:
+ *         to: 6371cdf493efc52bd60541fb
+ *         from: 6371cffc5bcdd12e70747a05
+ *         amount: 20
  */
 module.exports = function (router) {
     /**
@@ -46,10 +66,10 @@ module.exports = function (router) {
  *         schema:
  *           type: string
  *         required: true
- *         description: The book id
+ *         description: The user id
  *     responses:
  *       200:
- *         description: The book description by id
+ *         description: The user balance fetched successfully
  *         contens:
  *           application/json:
  *             schema:
@@ -58,4 +78,32 @@ module.exports = function (router) {
  *         description: The user was not found
  */
     router.get('/balance/:id',[],UserController.getBalance);
+    /**
+ * @swagger
+ * /api/user/transfer:
+ *   post:
+ *     summary: Create a new user
+ *     tags: [User]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Transfer'
+ *     responses:
+ *       200:
+ *         description: Transfer successful
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Tansfer'
+ *       404:
+ *         description: The user was not found
+ *       400:
+ *         description: Insufficient balance in account
+ *       500:
+ *         description: Some server error
+ */
+
+    router.post('/transfer',[],UserController.transferBalance);
 }

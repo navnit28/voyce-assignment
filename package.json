@@ -1,0 +1,52 @@
+{
+  "name": "voyce-assignment",
+  "version": "1.0.0",
+  "description": "voyce-assignment",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "author": "Navnit Anand",
+  "license": "ISC",
+  "dependencies": {
+    "api-query-params": "^5.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "express-useragent": "^1.0.15",
+    "lodash": "^4.17.21",
+    "module-alias": "^2.2.2",
+    "mongoose": "^5.10.11",
+    "morgan": "^1.10.0",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "grpc_tools_node_protoc_ts": "^5.3.1"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@initializer": "./initializers",
+    "@model": "./models",
+    "@config": "./config",
+    "@model_method": "./models/methods",
+    "@model_static": "./models/statics",
+    "@middleware": "./middleware",
+    "@provider": "./providers",
+    "@controller": "./controllers",
+    "@errors": "./errors",
+    "@helper_methods": "./models/methods",
+    "@validators": "./validators",
+    "@grpc-server": "./grpc"
+  }
+}
